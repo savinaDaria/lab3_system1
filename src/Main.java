@@ -16,31 +16,14 @@ public class Main {
                 for(String a:lexema.split(" ")){
                     words.add(a.concat(" "));
                 }
-                if(words.contains("/* ") && words.contains("*/ ")){
-                    int i1=words.indexOf("/* ");
-                    int i2=words.indexOf("*/ ");
-                    ArrayList<String> com= new ArrayList<>();
-                    for(int k=i1; k<=i2;k++){
-                        com.add(words.get(k));
-                    }
-                    words.removeAll(com);
-                    continue;
-                }
+                words=check_comments(words);
                 int i = 0;
                 for(String wrd:words){
                     if(wrd.matches("(\\s+)")){continue;}
                     automaton.w = wrd.toCharArray();
-
                     automaton.find();
                     StringBuilder text = new StringBuilder();
                        switch (automaton.kind.get(i)) {
-                           case "comments" -> {
-                               System.out.println(new String(text));
-                               int i3=words.indexOf("// ");
-                               for(int k=i3+1; k<=words.size();k++){
-                                   words.remove(k);
-                               }
-                           }
                            case "strings" -> text.append("< ").append(wrd).append("> - <Клас: Рядкові константи>\n");
                            case "chars" -> text.append("< ").append(wrd).append("> - <Клас: Символьні константи>\n");
                            case "numbers" -> text.append("< ").append(wrd).append("> - <Клас: Числа>\n");
@@ -58,6 +41,27 @@ public class Main {
             } catch (IOException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         }
+    }
+
+    public static ArrayList<String> check_comments(ArrayList<String> words){
+        if(words.contains("/* ") && words.contains("*/ ")){
+            int i1=words.indexOf("/* ");
+            int i2=words.indexOf("*/ ");
+            ArrayList<String> com_arr= new ArrayList<>();
+            for(int k=i1; k<=i2;k++){
+                com_arr.add(words.get(k));
+            }
+            words.removeAll(com_arr);
+        }
+        if(words.contains("// ")){
+            int i3=words.indexOf("// ");
+            ArrayList<String> com_arr= new ArrayList<>();
+            for(int k=i3; k<words.size();k++){
+                com_arr.add(words.get(k));
+            }
+            words.removeAll(com_arr);
+        }
+        return  words;
     }
 
 }

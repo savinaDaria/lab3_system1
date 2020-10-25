@@ -19,8 +19,6 @@ public class Automaton {
     public char[] w;
     public ArrayList<String> kind = new ArrayList<>();
 
-    public int str_constanta_urr;
-
     Automaton(File input_file) throws FileNotFoundException {
         Scanner in = new Scanner(input_file);
         states = new ArrayList<>();
