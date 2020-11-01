@@ -1,0 +1,45 @@
+13. ,
+13455.09yud return;
+14rte16
+
+
+public class GCD {
+
+    public static void main(String[] args) {
+
+        int n1 = 81, n2 = 153;
+
+        while(n1 != n2)
+        {
+            if(n1 > n2)
+                n1 -= n2;
+            else
+                n2 -= n1;
+        }
+
+        System.out.println("G.C.D = " + n1);
+    }
+}
+
+
+
+long i, j, k;
+byte a1 = 0xF1, a2 = 0x07;
+short r1 = 017
+public class SwapNumbers {
+
+    public static void main(String[] args) {
+
+        double first = 1.20, second = 2.45;
+
+        System.out.println("--Before swap--");
+        System.out.println("First number = " + first);
+
+        // Value of first is assigned to temporary
+        float temporary = first;
+
+
+        System.out.println("--After swap--");
+        System.out.println("First number = " + first);
+    }
+}
